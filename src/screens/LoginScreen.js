@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 
 const LoginScreen = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,48 +15,54 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>{isLogin ? 'Login' : 'Sign Up'}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        {!isLogin && (
+    <ImageBackground source={require('../assets/images/hero_pc.jpg')} style={styles.background}>
+      <View style={styles.container}>
+        <View style={styles.card}>
+          <Text style={styles.title}>{isLogin ? 'Login' : 'Sign Up'}</Text>
           <TextInput
             style={styles.input}
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            value={password}
+            onChangeText={setPassword}
             secureTextEntry
           />
-        )}
-        <Button title={isLogin ? 'Login' : 'Sign Up'} onPress={() => {}} />
-        <TouchableOpacity onPress={toggleForm}>
-          <Text style={styles.toggleText}>
-            {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
-          </Text>
-        </TouchableOpacity>
+          {!isLogin && (
+            <TextInput
+              style={styles.input}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry
+            />
+          )}
+          <Button title={isLogin ? 'Login' : 'Sign Up'} onPress={() => {}} color="#38c367" />
+          <TouchableOpacity onPress={toggleForm}>
+            <Text style={styles.toggleText}>
+              {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Add a semi-transparent overlay
   },
   card: {
     width: '80%',
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
   },
   toggleText: {
     marginTop: 10,
-    color: '#007BFF',
+    color: 'black',
     textAlign: 'center',
   },
 });
