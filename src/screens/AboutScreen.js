@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, S
 import { Picker } from '@react-native-picker/picker';
 import { request, PERMISSIONS } from 'react-native-permissions';
 import VideoSection from '../screens/VideoSection';
+import IconSection from '../screens/IconSection';
 
 const AboutScreen = () => {
   const [count, setCount] = useState(0);
@@ -137,6 +138,7 @@ const AboutScreen = () => {
         </View>
       </ImageBackground>
       <VideoSection />
+      <IconSection />
     </ScrollView>
   );
 };
