@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, FlatList, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView, Dimensions, FlatList, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import schoolData from '../assets/data/schools.json';
 
@@ -14,7 +14,6 @@ const imageMapping = {
   5: require('../assets/school/school5.jpeg'),
   6: require('../assets/school/school6.jpeg'),
   7: require('../assets/school/school7.jpeg'),
-  // Add more mappings as needed
 };
 
 const images = [
@@ -69,45 +68,70 @@ const CollaborateScreen = () => {
   );
 
   return (
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-    <View style={styles.container}>
-      <Text style={styles.title}>Community Impact</Text>
-      <Text style={styles.description}>
-        Every scholarship begins with shipping a mobile phone to the parent of the student. Then they create their own mobile bank account
-        using that phone, to start receiving their child's scholarships directly, every month.
-      </Text>
-      <FlatList
-        data={images}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.gallery}
-      />
-      {selectedImage && (
-        <Modal
-          visible={modalVisible}
-          transparent={true}
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.modalContainer}>
-            <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-              <Text style={styles.closeButtonText}>×</Text>
-            </TouchableOpacity>
-            <Image source={selectedImage} style={styles.fullImage} />
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Community Impact</Text>
+        <Text style={styles.description}>
+          Every scholarship begins with shipping a mobile phone to the parent of the student. Then they create their own mobile bank account
+          using that phone, to start receiving their child's scholarships directly, every month.
+        </Text>
+        <FlatList
+          data={images}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.gallery}
+        />
+        {selectedImage && (
+          <Modal
+            visible={modalVisible}
+            transparent={true}
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={styles.modalContainer}>
+              <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                <Text style={styles.closeButtonText}>×</Text>
+              </TouchableOpacity>
+              <Image source={selectedImage} style={styles.fullImage} />
+            </View>
+          </Modal>
+        )}
+        <Text style={styles.sectionTitle}>Students from Government Primary Schools Nationwide</Text>
+        <FlatList
+          data={schoolData}
+          renderItem={renderSchoolItem}
+          keyExtractor={(item) => item.name}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.schoolGallery}
+        />
+        <Text style={styles.sectionTitle}>Scholarship Eligibility</Text>
+        <Text style={styles.description}>Only students who are currently enrolled in Government Primary Schools and fall under any of the following criteria are eligible to apply for scholarships</Text>
+        <View style={styles.cardContainer}>
+          <View style={styles.card}>
+            <Icon name="school" size={40} color="#38C367" style={styles.cardIcon} />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Education for All</Text>
+              <Text style={styles.cardDescription}>Providing quality education to underprivileged children.</Text>
+            </View>
           </View>
-        </Modal>
-      )}
-      <Text style={styles.sectionTitle}>Students from Government Primary Schools Nationwide</Text>
-      <FlatList
-        data={schoolData}
-        renderItem={renderSchoolItem}
-        keyExtractor={(item) => item.name}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.schoolGallery}
-      />
-    </View>
+          <View style={styles.card}>
+            <Icon name="heart" size={40} color="#38C367" style={styles.cardIcon} />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Health and Wellness</Text>
+              <Text style={styles.cardDescription}>Ensuring the health and wellness of students.</Text>
+            </View>
+          </View>
+          <View style={styles.card}>
+            <Icon name="food" size={40} color="#38C367" style={styles.cardIcon} />
+            <View style={styles.cardContent}>
+              <Text style={styles.cardTitle}>Nutrition Programs</Text>
+              <Text style={styles.cardDescription}>Providing nutritious meals to support learning.</Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </ScrollView>
   );
 };
@@ -203,6 +227,33 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'gray',
     marginLeft: 5,
+  },
+  cardContainer: {
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  cardIcon: {
+    marginRight: 15,
+  },
+  cardContent: {
+    flex: 1,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  cardDescription: {
+    fontSize: 14,
+    color: 'gray',
   },
 });
 
