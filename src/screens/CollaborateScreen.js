@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: screenWidth - 40,
-    height: screenWidth - 40,
+    height: 550,
     resizeMode: 'cover',
     borderRadius: 10,
   },
