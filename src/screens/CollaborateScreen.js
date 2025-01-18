@@ -10,7 +10,19 @@ const images = [
   { id: '4', src: require('../assets/carousel/community_4.jpg') },
   { id: '5', src: require('../assets/carousel/community_5.jpg') },
   { id: '6', src: require('../assets/carousel/community_6.jpg') },
-  // Add more images as needed
+  { id: '7', src: require('../assets/carousel/community_7.jpg') },
+  { id: '8', src: require('../assets/carousel/community_8.jpg') },
+  { id: '9', src: require('../assets/carousel/community_9.jpg') },
+  { id: '10', src: require('../assets/carousel/community_10.jpg') },
+  { id: '11', src: require('../assets/carousel/community_11.jpg') },
+  { id: '12', src: require('../assets/carousel/community_12.jpg') },
+  { id: '13', src: require('../assets/carousel/community_13.jpg') },
+  { id: '14', src: require('../assets/carousel/community_14.jpg') },
+  { id: '15', src: require('../assets/carousel/community_15.jpg') },
+  { id: '16', src: require('../assets/carousel/community_16.jpg') },
+  { id: '17', src: require('../assets/carousel/community_17.jpg') },
+  { id: '18', src: require('../assets/carousel/community_18.jpg') },
+
 ];
 
 const CollaborateScreen = () => {
