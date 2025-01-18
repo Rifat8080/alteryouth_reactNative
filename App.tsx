@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
-import HomeScreen from './src/HomeScreen.js';
+import { SafeAreaView } from 'react-native';
+import HomeScreen from './src/HomeScreen';
+import BottomTabBar from './src/navigation/BottomTabBar';
 
 const App = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <HomeScreen />
+      <BottomTabBar />
     </SafeAreaView>
   );
 };
