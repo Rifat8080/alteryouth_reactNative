@@ -14,6 +14,9 @@ const IconSection = () => {
         <View style={styles.logoWrapper}>
           <Image source={require('../assets/images/expo.png')} style={styles.logo} />
         </View>
+        <View style={styles.logoWrapper}>
+          <Image source={require('../assets/logo/google.png')} style={styles.logo} />
+        </View>
       
       </View>
     </View>
