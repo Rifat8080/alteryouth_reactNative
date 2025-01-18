@@ -2,8 +2,11 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import AboutScreen from '../screens/AboutScreen';
+import HowItWorksScreen from '../screens/HowItWorksScreen';
+import ScholarshipsScreen from '../screens/ScholarshipsScreen';
+import CollaborateScreen from '../screens/CollaborateScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,10 +18,26 @@ const BottomTabBar = () => {
           tabBarIcon: ({ color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
-              iconName = 'home';
-            } else if (route.name === 'Settings') {
-              iconName = 'cog';
+            switch (route.name) {
+              
+              case 'About':
+                iconName = 'information';
+                break;
+              case 'HowItWorks':
+                iconName = 'help-circle';
+                break;
+              case 'Scholarships':
+                iconName = 'school';
+                break;
+              case 'Collaborate':
+                iconName = 'account-group';
+                break;
+              case 'Login':
+                iconName = 'login';
+                break;
+              default:
+                iconName = 'circle';
+                break;
             }
 
             return <Icon name={iconName} size={size} color={color} />;
@@ -29,8 +48,11 @@ const BottomTabBar = () => {
           showLabel: false,
         }}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="About" component={AboutScreen} />
+        <Tab.Screen name="HowItWorks" component={HowItWorksScreen} />
+        <Tab.Screen name="Scholarships" component={ScholarshipsScreen} />
+        <Tab.Screen name="Collaborate" component={CollaborateScreen} />
+        <Tab.Screen name="Login" component={LoginScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
