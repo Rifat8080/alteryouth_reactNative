@@ -9,8 +9,8 @@ const HowItWorksScreen = () => {
         <Text style={styles.sectionTitle}>The Uber for Scholarships</Text>
         <Text style={styles.sectionSubtitle}>A platform connecting the world with financially struggling students in Government Primary Schools of Bangladesh</Text>
         <View style={styles.iconContainer}>
-          <Image source={require('../assets/icons/appstore_small.svg')} style={styles.icon} />
-          <Image source={require('../assets/icons/playstore_small.svg')} style={styles.icon} />
+          <Image source={require('../assets/icons/appstore_small.png')} style={styles.icon} />
+          <Image source={require('../assets/icons/playstore_small.png')} style={styles.icon} />
         </View>
         <View style={styles.imageContainer}>
           <View style={styles.imageCard}>
@@ -78,8 +78,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   icon: {
-    width: 150,
-    height: 150,
+    width: "150",
+    height: "150",
+    padding:"20" ,
   },
   imageContainer: {
     flexDirection: 'row',
