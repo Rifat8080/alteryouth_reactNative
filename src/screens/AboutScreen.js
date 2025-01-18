@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
+    paddingTop: 650, // Add some padding at the top
   },
   h3: {
     fontSize: 18,
@@ -165,8 +166,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   picker: {
-    flex: 1,
-    height: 40,
+    flex: 2,
+    
   },
   phoneInput: {
     flex: 2,
