@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Alert, Platform, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { request, PERMISSIONS } from 'react-native-permissions';
 
@@ -82,6 +82,7 @@ const AboutScreen = () => {
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <ImageBackground source={require('../assets/images/hero_home_phone.jpg')} style={styles.background}>
         <View style={styles.overlay}>
+          <Image source={require('../assets/logo/ay.png')} style={styles.logo} />
           <Text style={styles.h1}>Start your scholarship</Text>
           <Text style={styles.h3}>Directly for students in Government Primary Schools throughout Bangladesh</Text>
           <View style={styles.form}>
@@ -157,12 +158,18 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingBottom: 50, // Add some padding at the bottom
   },
+  logo: {
+    width: 150,
+    height: 150,
+    resizeMode: 'contain',
+    marginBottom: 20,
+  },
   h1: {
     fontSize: 32,
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
-    paddingTop: 400, // Add some padding at the top
+    paddingTop: 250, // Add some padding at the top
   },
   h3: {
     fontSize: 18,
