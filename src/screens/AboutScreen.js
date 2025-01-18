@@ -72,8 +72,8 @@ const AboutScreen = () => {
               style={styles.phoneInput}
               placeholder="Your Number"
               keyboardType="phone-pad"
-              value={phoneNumber}
-              onChangeText={(text) => setPhoneNumber(text)}
+              value={`${selectedCountry} ${phoneNumber}`}
+              onChangeText={(text) => setPhoneNumber(text.replace(selectedCountry, '').trim())}
             />
           </View>
           <Text style={styles.label}>Number of Scholarships</Text>
