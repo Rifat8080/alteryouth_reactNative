@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
-    paddingTop: 500, // Add some padding at the top
+    paddingTop: 400, // Add some padding at the top
   },
   h3: {
     fontSize: 18,
