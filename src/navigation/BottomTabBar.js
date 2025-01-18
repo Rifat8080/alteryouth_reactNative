@@ -15,7 +15,7 @@ const BottomTabBar = () => {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
             switch (route.name) {
@@ -47,11 +47,11 @@ const BottomTabBar = () => {
               />
             );
           },
+          tabBarActiveTintColor: '#38C367',
+          tabBarInactiveTintColor: 'black',
+          tabBarStyle: { paddingBottom: 10 },
           headerShown: false,
         })}
-        tabBarOptions={{
-          showLabel: false,
-        }}
       >
         <Tab.Screen name="About" component={AboutScreen} />
         <Tab.Screen name="HowItWorks" component={HowItWorksScreen} />
