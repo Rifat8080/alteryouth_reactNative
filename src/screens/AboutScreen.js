@@ -1,48 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Alert, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { Screen } from 'react-native-screens';
+import { request, PERMISSIONS } from 'react-native-permissions';
 
 const AboutScreen = () => {
   const [count, setCount] = useState(0);
   const [countryCodes, setCountryCodes] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [limitReached, setLimitReached] = useState(false);
 
   useEffect(() => {
     const data = require('../assets/data/code.json');
     setCountryCodes(data);
-    getUserCountry(data);
+    requestLocationPermission().then(() => {
+      getUserCountry(data);
+    });
   }, []);
+
+  const requestLocationPermission = async () => {
+    try {
+      const granted = await request(
+        Platform.OS === 'ios'
+          ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
+      );
+      if (granted === 'granted') {
+        getUserCountry();
+      } else {
+        Alert.alert('Location permission denied');
+      }
+    } catch (err) {
+      Alert.alert('Error requesting location permission', err.message);
+    }
+  };
 
   const getUserCountry = (data) => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
-          .then(response => response.json())
-          .then(locationData => {
-            const country = data.find(country => country.name === locationData.countryName);
-            if (country) {
-              setSelectedCountry(country.dial_code);
-            }
-          })
-          .catch(error => console.error('Error fetching location data:', error));
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
+            .then((response) => response.json())
+            .then((locationData) => {
+              const country = data.find((country) => country.name === locationData.countryName);
+              if (country) {
+                setSelectedCountry(country.dial_code);
+              } else {
+                Alert.alert('Country not found in data');
+              }
+            })
+            .catch((error) => Alert.alert('Error fetching location data', error.message));
+        },
+        (error) => Alert.alert('Error getting location', error.message),
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      );
     }
   };
 
   const increment = () => {
     if (count < 3) {
       setCount(count + 1);
+      setLimitReached(false);
     } else {
-      alert('Scholarship limit reached for current scholarship session');
+      setLimitReached(true);
     }
   };
 
   const decrement = () => {
     if (count > 0) {
       setCount(count - 1);
+      setLimitReached(false);
     }
   };
 
@@ -52,7 +80,7 @@ const AboutScreen = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <ImageBackground source={require('../assets/images/hero_home_phone.jpg')} style={styles.background}>
+      <ImageBackground source={require('../assets/images/hero_home_phone.jpg')} style={styles.background}>
         <View style={styles.overlay}>
           <Text style={styles.h1}>Start your scholarship</Text>
           <Text style={styles.h3}>Directly for students in Government Primary Schools throughout Bangladesh</Text>
@@ -74,8 +102,8 @@ const AboutScreen = () => {
                 style={styles.phoneInput}
                 placeholder="Your Number"
                 keyboardType="phone-pad"
-                value={`${selectedCountry} ${phoneNumber}`}
-                onChangeText={(text) => setPhoneNumber(text.replace(selectedCountry, '').trim())}
+                value={phoneNumber}
+                onChangeText={(text) => setPhoneNumber(text)}
               />
             </View>
             <Text style={styles.label}>Number of Scholarships</Text>
@@ -96,6 +124,9 @@ const AboutScreen = () => {
                 <Text style={styles.counterButtonText}>+</Text>
               </TouchableOpacity>
             </View>
+            {limitReached && (
+              <Text style={styles.limitMessage}>Scholarship limit reached for current scholarship session</Text>
+            )}
             <Text style={styles.price}>BDT {getPrice()}<Text style={styles.pricePerMonth}>/month</Text></Text>
             <TouchableOpacity style={styles.submitButton}>
               <Text style={styles.submitButtonText}>START NOW</Text>
@@ -103,7 +134,7 @@ const AboutScreen = () => {
           </View>
         </View>
       </ImageBackground>
-      </ScrollView>
+    </ScrollView>
   );
 };
 
@@ -131,9 +162,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
-    paddingTop: 500,
-   
-   // Add some padding at the top
+    paddingTop: 500, // Add some padding at the top
   },
   h3: {
     fontSize: 18,
@@ -179,7 +208,7 @@ const styles = StyleSheet.create({
     flex: 2.5,
   },
   phoneInput: {
-    flex:2.8,
+    flex: 2.8,
     height: 40,
     paddingHorizontal: 10,
   },
@@ -214,6 +243,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: 'black',
+  },
+  limitMessage: {
+    color: 'red',
+    marginTop: 10,
+    textAlign: 'center',
   },
   price: {
     fontSize: 24,
