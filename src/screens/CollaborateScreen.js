@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Dimensions, FlatList, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import schoolData from '../assets/data/schools.json';
+import ImageCard from '../screens/ImageCard';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -131,6 +132,33 @@ const CollaborateScreen = () => {
             </View>
           </View>
         </View>
+        <View style={styles.cardContainer}>
+          <ImageCard
+            imageSrc={require('../assets/images/headteacher.jpg')}
+            altText="image description 1"
+            caption="Are you a teacher? Get your students listed on the platform."
+            linkText="Learn more"
+            linkHref="#"
+            isHeadteacher={true}
+            bottomCaption="Only for Government Primary Schools in Bangladesh"
+          />
+          <ImageCard
+            imageSrc={require('../assets/images/person.jpg')}
+            altText="image description 2"
+            caption="You can be anywhere in the world"
+            linkText="Discover more"
+            linkHref="#"
+            isHeadteacher={false}
+          />
+          <ImageCard
+            imageSrc={require('../assets/images/applicant.jpg')}
+            altText="image description 3"
+            caption="While students get closer to their dreams"
+            linkText="Join us"
+            linkHref="#"
+            isHeadteacher={false}
+          />
+        </View>
       </View>
     </ScrollView>
   );
@@ -231,6 +259,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     width: '100%',
     paddingHorizontal: 20,
+    paddingTop: 30, 
   },
   card: {
     flexDirection: 'row',
@@ -245,7 +274,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4, // Blur radius
     elevation: 5, // Elevation for Android
   },
-  
   cardIcon: {
     marginRight: 15,
   },
