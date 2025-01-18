@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, FlatList, TouchableOpacity, Modal } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
 const images = [
-  { id: '1', src: require('../assets/images/app_scholarship.jpg') },
-  { id: '2', src: require('../assets/images/app_school.png') },
-  { id: '3', src: require('../assets/images/app_graduation.png') },
+  { id: '1', src: require('../assets/carousel/community_1.jpg') },
+  { id: '2', src: require('../assets/carousel/community_2.jpg') },
+  { id: '3', src: require('../assets/carousel/community_3.jpg') },
+  { id: '4', src: require('../assets/carousel/community_4.jpg') },
+  { id: '5', src: require('../assets/carousel/community_5.jpg') },
+  { id: '6', src: require('../assets/carousel/community_6.jpg') },
   // Add more images as needed
 ];
 
 const CollaborateScreen = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  const handleImagePress = (image) => {
+    setSelectedImage(image);
+    setModalVisible(true);
   };
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => handleImagePress(item.src)}>
+      <View style={styles.imageContainer}>
+        <Image source={item.src} style={styles.image} />
+      </View>
+    </TouchableOpacity>
+  );
 
   return (
     <View style={styles.container}>
@@ -28,17 +37,28 @@ const CollaborateScreen = () => {
         Every scholarship begins with shipping a mobile phone to the parent of the student. Then they create their own mobile bank account
         using that phone, to start receiving their child's scholarships directly, every month.
       </Text>
-      <View style={styles.gallery}>
-        <TouchableOpacity onPress={handlePrev} style={styles.navButton}>
-          <Text style={styles.navButtonText}>‹</Text>
-        </TouchableOpacity>
-        <View style={styles.imageContainer}>
-          <Image source={images[currentIndex].src} style={styles.image} />
-        </View>
-        <TouchableOpacity onPress={handleNext} style={styles.navButton}>
-          <Text style={styles.navButtonText}>›</Text>
-        </TouchableOpacity>
-      </View>
+      <FlatList
+        data={images}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.gallery}
+      />
+      {selectedImage && (
+        <Modal
+          visible={modalVisible}
+          transparent={true}
+          onRequestClose={() => setModalVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+              <Text style={styles.closeButtonText}>×</Text>
+            </TouchableOpacity>
+            <Image source={selectedImage} style={styles.fullImage} />
+          </View>
+        </Modal>
+      )}
     </View>
   );
 };
@@ -47,7 +67,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    padding: 20,
     alignItems: 'center',
   },
   title: {
@@ -56,33 +75,45 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
     marginBottom: 10,
+    paddingTop: 90,
   },
   description: {
     fontSize: 16,
     color: 'black',
     textAlign: 'center',
-    marginBottom: 20,
+  
   },
   gallery: {
-    flexDirection: 'row',
     alignItems: 'center',
   },
   imageContainer: {
-    marginHorizontal: 10,
+    margin: 10,
   },
   image: {
-    width: screenWidth * 0.8,
-    height: 200,
-    resizeMode: 'contain',
+    width: screenWidth - 40,
+    height: screenWidth - 40,
+    resizeMode: 'cover',
     borderRadius: 10,
   },
-  navButton: {
-    padding: 10,
-    backgroundColor: '#37C467',
-    borderRadius: 5,
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  navButtonText: {
-    fontSize: 24,
+  fullImage: {
+    width: screenWidth * 0.9,
+    height: screenWidth * 0.9,
+    resizeMode: 'contain',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
+    zIndex: 1,
+  },
+  closeButtonText: {
+    fontSize: 30,
     color: 'white',
   },
 });
