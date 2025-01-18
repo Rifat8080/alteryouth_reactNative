@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 20,
-    paddingTop: 250, // Add some padding at the top
+    paddingTop: 10, // Add some padding at the top
   },
   h3: {
     fontSize: 18,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white', // Semi-transparent form background
     padding: 20,
     borderRadius: 10,
-    marginTop: 30,
+    marginTop: 60,
   },
   formTitle: {
     fontSize: 18,
