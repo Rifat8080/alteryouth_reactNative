@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { Screen } from 'react-native-screens';
 
 const AboutScreen = () => {
   const [count, setCount] = useState(0);
@@ -109,6 +110,8 @@ const AboutScreen = () => {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    resizeMode: 'cover',
+    width: '100%',
   },
   scrollViewContent: {
     flexGrow: 1,
@@ -129,7 +132,6 @@ const styles = StyleSheet.create({
     color: 'white',
     marginBottom: 20,
     paddingTop: 500,
-    maxWidth: 370,
    
    // Add some padding at the top
   },
@@ -140,7 +142,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
     paddingHorizontal: 20,
-    maxWidth: 370,
   },
   form: {
     width: '80%',
