@@ -19,7 +19,6 @@ const BottomTabBar = () => {
             let iconName;
 
             switch (route.name) {
-              
               case 'About':
                 iconName = 'information';
                 break;
@@ -40,7 +39,13 @@ const BottomTabBar = () => {
                 break;
             }
 
-            return <Icon name={iconName} size={size} color={color} />;
+            return (
+              <Icon
+                name={iconName}
+                color={color}
+                size={size}
+              />
+            );
           },
           headerShown: false,
         })}
