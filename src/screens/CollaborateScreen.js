@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Dimensions, FlatList, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import schoolData from '../assets/data/schools.json';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -61,7 +61,7 @@ const CollaborateScreen = () => {
       <View style={styles.schoolTextContainer}>
         <Text style={styles.schoolTitle}>{item.name}</Text>
         <View style={styles.locationContainer}>
-          <Icon name="location-on" size={20} color="gray" />
+          <Icon name="map-marker" size={20} color="#38C367" />
           <Text style={styles.schoolLocation}>{item.location}</Text>
         </View>
       </View>
@@ -98,7 +98,7 @@ const CollaborateScreen = () => {
           </View>
         </Modal>
       )}
-      <Text style={styles.sectionTitle}>Our Schools</Text>
+      <Text style={styles.sectionTitle}>Students from Government Primary Schools Nationwide</Text>
       <FlatList
         data={schoolData}
         renderItem={renderSchoolItem}
