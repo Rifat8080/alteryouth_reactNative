@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom: 20,
+    marginBottom: 10,
+    paddingTop: 300,
   },
   h3: {
     fontSize: 18,
@@ -44,16 +45,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
     paddingHorizontal: 20,
+    maxWidth: 400,
   },
   form: {
     width: '80%',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent form background
+    backgroundColor: 'white', // Semi-transparent form background
     padding: 20,
     borderRadius: 10,
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'black',
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
