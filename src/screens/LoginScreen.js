@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const LoginScreen = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -42,6 +43,17 @@ const LoginScreen = () => {
             />
           )}
           <Button title={isLogin ? 'Login' : 'Sign Up'} onPress={() => {}} color="#38c367" />
+          <View style={styles.iconContainer}>
+            <TouchableOpacity>
+              <Icon name="google" size={30} color="#DB4437" />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Icon name="facebook" size={30} color="#4267B2" />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Icon name="linkedin" size={30} color="#0077B5" />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity onPress={toggleForm}>
             <Text style={styles.toggleText}>
               {isLogin ? "Don't have an account? " : 'Already have an account? '}
@@ -88,6 +100,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 20,
   },
   toggleText: {
     marginTop: 10,
