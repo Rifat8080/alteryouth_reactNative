@@ -9,13 +9,9 @@ const AboutScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(() => {
-    fetch(require('../assets/data/code.json'))
-      .then(response => response.json())
-      .then(data => {
-        setCountryCodes(data);
-        getUserCountry(data);
-      })
-      .catch(error => console.error('Error fetching country codes:', error));
+    const data = require('../assets/data/code.json');
+    setCountryCodes(data);
+    getUserCountry(data);
   }, []);
 
   const getUserCountry = (data) => {
@@ -139,7 +135,7 @@ const styles = StyleSheet.create({
   },
   form: {
     width: '80%',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent form background
+    backgroundColor: 'white', // Semi-transparent form background
     padding: 20,
     borderRadius: 10,
   },
