@@ -75,12 +75,12 @@ const ScholarshipsScreen = () => {
             <TouchableOpacity onPress={showMoreCards} style={styles.seeMoreButton}>
               <Text style={styles.seeMoreButtonText}>See More</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.joinButton}>
-              <Text style={styles.joinButtonText}>Join Community</Text>
-            </TouchableOpacity>
           </View>
         )}
       </View>
+          <TouchableOpacity style={styles.joinButton}>
+              <Text style={styles.joinButtonText}>Join Community</Text>
+            </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -88,6 +88,7 @@ const ScholarshipsScreen = () => {
 const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
+    backgroundColor: 'white',
   },
   container: {
     backgroundColor: 'white',
@@ -215,13 +216,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   joinButton: {
-    padding: 10,
+    
+    padding: 20,
+    textAlign: 'center',
     borderRadius: 10,
     backgroundColor: '#37C467',
+    margin: 20,
   },
   joinButtonText: {
     color: 'white',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
