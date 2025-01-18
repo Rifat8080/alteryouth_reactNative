@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: '600',
-    color: 'gray',
+    color: 'black',
     marginBottom: 10,
   },
   counterContainer: {
