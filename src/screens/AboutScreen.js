@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Alert, Platform, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { request, PERMISSIONS } from 'react-native-permissions';
+import VideoSection from '../screens/VideoSection';
 
 const AboutScreen = () => {
   const [count, setCount] = useState(0);
@@ -135,6 +136,7 @@ const AboutScreen = () => {
           </View>
         </View>
       </ImageBackground>
+      <VideoSection />
     </ScrollView>
   );
 };
