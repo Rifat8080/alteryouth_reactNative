@@ -110,24 +110,24 @@ const CollaborateScreen = () => {
         <Text style={styles.description}>Only students who are currently enrolled in Government Primary Schools and fall under any of the following criteria are eligible to apply for scholarships</Text>
         <View style={styles.cardContainer}>
           <View style={styles.card}>
-            <Icon name="school" size={40} color="#38C367" style={styles.cardIcon} />
+            <Icon name="wheelchair-accessibility" size={40} color="#38C367" style={styles.cardIcon} />
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>Education for All</Text>
-              <Text style={styles.cardDescription}>Providing quality education to underprivileged children.</Text>
+              <Text style={styles.cardTitle}>Disabled Father</Text>
+              <Text style={styles.cardDescription}>Student's father is physically unable to work</Text>
             </View>
           </View>
           <View style={styles.card}>
-            <Icon name="heart" size={40} color="#38C367" style={styles.cardIcon} />
+            <Icon name="human-child" size={40} color="#38C367" style={styles.cardIcon} />
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>Health and Wellness</Text>
-              <Text style={styles.cardDescription}>Ensuring the health and wellness of students.</Text>
+              <Text style={styles.cardTitle}>Orphan</Text>
+              <Text style={styles.cardDescription}>Both parents are deceased or have abandoned the child</Text>
             </View>
           </View>
           <View style={styles.card}>
-            <Icon name="food" size={40} color="#38C367" style={styles.cardIcon} />
+            <Icon name="account-child-outline" size={40} color="#38C367" style={styles.cardIcon} />
             <View style={styles.cardContent}>
-              <Text style={styles.cardTitle}>Nutrition Programs</Text>
-              <Text style={styles.cardDescription}>Providing nutritious meals to support learning.</Text>
+              <Text style={styles.cardTitle}>Single Mother</Text>
+              <Text style={styles.cardDescription}>Student's father is deceased or has abandoned the family</Text>
             </View>
           </View>
         </View>
@@ -239,7 +239,13 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
+    shadowColor: '#000', // Shadow color (usually black)
+    shadowOffset: { width: 0, height: 2 }, // Offset for the shadow
+    shadowOpacity: 0.1, // Shadow transparency
+    shadowRadius: 4, // Blur radius
+    elevation: 5, // Elevation for Android
   },
+  
   cardIcon: {
     marginRight: 15,
   },
