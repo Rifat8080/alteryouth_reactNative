@@ -44,7 +44,8 @@ const LoginScreen = () => {
           <Button title={isLogin ? 'Login' : 'Sign Up'} onPress={() => {}} color="#38c367" />
           <TouchableOpacity onPress={toggleForm}>
             <Text style={styles.toggleText}>
-              {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
+              {isLogin ? "Don't have an account? " : 'Already have an account? '}
+              <Text style={styles.highlightText}>{isLogin ? 'Sign Up' : 'Login'}</Text>
             </Text>
           </TouchableOpacity>
         </View>
@@ -92,6 +93,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'black',
     textAlign: 'center',
+  },
+  highlightText: {
+    color: '#38c367',
+    fontWeight: 'bold',
   },
 });
 
