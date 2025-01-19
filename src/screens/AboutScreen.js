@@ -89,13 +89,14 @@ const AboutScreen = () => {
           <Text style={styles.h3}>Directly for students in Government Primary Schools throughout Bangladesh</Text>
           <View style={styles.form}>
             <Text style={styles.formTitle}>Join the <Text style={styles.highlight}>#alteryouthrevolution</Text></Text>
-            <TextInput style={styles.input} placeholder="Your Name" />
-            <TextInput style={styles.input} placeholder="Your Email" keyboardType="email-address" />
+            <TextInput style={styles.input} placeholder="Your Name" placeholderTextColor="black" />
+            <TextInput style={styles.input} placeholder="Your Email" keyboardType="email-address" placeholderTextColor="black" />
             <View style={styles.phoneInputContainer}>
               <Picker
                 selectedValue={selectedCountry}
                 style={styles.picker}
                 onValueChange={(itemValue) => setSelectedCountry(itemValue)}
+                itemStyle={{ color: 'black' }} // Added itemStyle prop
               >
                 {countryCodes.map((country, index) => (
                   <Picker.Item key={index} label={`${country.flag} ${country.dial_code}`} value={country.dial_code} />
@@ -105,6 +106,7 @@ const AboutScreen = () => {
                 style={styles.phoneInput}
                 placeholder="Your Number"
                 keyboardType="phone-pad"
+                placeholderTextColor="black"
                 value={phoneNumber}
                 onChangeText={(text) => setPhoneNumber(text)}
               />
@@ -202,7 +204,6 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderColor: 'gray',
-    color: 'black',
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
@@ -218,6 +219,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     flex: 2.5,
+    
   },
   phoneInput: {
     flex: 2.8,

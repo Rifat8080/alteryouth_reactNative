@@ -23,12 +23,14 @@ const LoginScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="Email"
+            placeholderTextColor="black"
             value={email}
             onChangeText={setEmail}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
+            placeholderTextColor="black"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -37,6 +39,7 @@ const LoginScreen = () => {
             <TextInput
               style={styles.input}
               placeholder="Confirm Password"
+              placeholderTextColor="black"
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry
