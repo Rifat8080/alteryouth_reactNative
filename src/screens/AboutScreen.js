@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Alert, Platform, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { request, PERMISSIONS } from 'react-native-permissions';
 import VideoSection from '../screens/VideoSection';
 import IconSection from '../screens/IconSection';
 
@@ -15,50 +14,7 @@ const AboutScreen = () => {
   useEffect(() => {
     const data = require('../assets/data/code.json');
     setCountryCodes(data);
-    requestLocationPermission().then(() => {
-      getUserCountry(data);
-    });
   }, []);
-
-  const requestLocationPermission = async () => {
-    try {
-      const granted = await request(
-        Platform.OS === 'ios'
-          ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
-          : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION
-      );
-      if (granted === 'granted') {
-        getUserCountry();
-      } else {
-        Alert.alert('Location permission denied');
-      }
-    } catch (err) {
-      Alert.alert('Error requesting location permission', err.message);
-    }
-  };
-
-  const getUserCountry = (data) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
-            .then((response) => response.json())
-            .then((locationData) => {
-              const country = data.find((country) => country.name === locationData.countryName);
-              if (country) {
-                setSelectedCountry(country.dial_code);
-              } else {
-                Alert.alert('Country not found in data');
-              }
-            })
-            .catch((error) => Alert.alert('Error fetching location data', error.message));
-        },
-        (error) => Alert.alert('Error getting location', error.message),
-        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-      );
-    }
-  };
 
   const increment = () => {
     if (count < 3) {

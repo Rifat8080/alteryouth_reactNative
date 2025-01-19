@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   cardImage: {
-    width: '80%',
+    width: '90%',
     height: 600,
     marginBottom: 10,
   },
